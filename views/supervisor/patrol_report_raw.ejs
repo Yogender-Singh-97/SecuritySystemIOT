@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Election Results</title>
+      <style>
+     
+table {
+  border-collapse: collapse;
+}
+ th {
+  background: #ccc;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background: #efefef;
+}
+
+tr:hover {
+  background: #d1d1d1;
+}
+    </style>
+  </head>
+  <body>
+
+
+<div>
+  <img src="/images/auth/logo_final.jpg" width="400"  height="150"  alt="logo">
+</div>  
+  <div class="row">
+
+  <h3 style="text-align: center;">Patrol  Report</h3>
+  </div>
+
+  <div style="align-self: center; border: 0px;">  
+  <table class="my_table">
+
+    <tr>
+      <td>Date From : </td>
+      <td><%= start_d %></td>
+    </tr>
+
+    <tr>
+      <td>Date To : </td>
+      <td><%= stop_d %></td>
+    </tr>
+    <tr>
+      <td>Patrol Name : </td>
+      <td><%= patrol_headers[0].patrol_name %></td>
+    </tr>
+    <tr>
+      <td>Total Checkpoints: </td>
+      <td><%= patrol_headers[0].patrol_param.length %></td>
+    </tr>
+    <tr>
+      <td>Total Guards Assigned: </td>
+      <td><%= allocation_headers.length %></td>
+    </tr>
+      
+  </table> 
+</div>              
+              
+  
+
+<% 
+
+if(allocation_headers.length==0)
+{
+%>
+<br/><br/>
+<p style="text-align: center;"><i> No any Guard was allocated to this Patrol </i></p>
+
+<%
+}
+else
+{
+   
+%>
+<div class="row">
+
+      <h3 style="text-align: center;">Guard(s) Patroling Details  </h3>
+    </div>
+  
+<%
+
+function dateconversion(date_value)
+                         {
+                       
+                          var formattedDate = date_value.toLocaleDateString('en-GB', {
+                          day: 'numeric', month: 'short', year: 'numeric'
+                           }).replace(/ /g, '-');
+
+                           return formattedDate;
+                        }
+
+function day_select(val)
+  {
+    var fday;  
+    if(val==1)
+    {
+        fday="Monday";
+    }
+    if(val==2)
+    {
+        fday="Tuesday";
+    }
+    if(val==3)
+    {
+        fday="Wednesday";
+    }
+    if(val==4)
+    {
+        fday="Thursday";
+    }
+    if(val==5)
+    {
+        fday="Friday";
+    }
+    
+    if(val==6)
+    {
+        fday="Saturday";
+    }
+    
+    if(val==7)
+    {
+        fday="Sunday";
+    }
+
+    return fday;
+              
+  }                        
+
+var count=0;
+allocation_headers.forEach(function(allocation){
+count=count+1;
+  
+%>
+  <div>
+        <h4><%= count %>. <%= allocation.guard.firstname %> <%= allocation.guard.lastname %></h4>
+</div>
+<div >
+          <table>
+            <thead>
+              <tr>
+                <th> Full Name </th>
+                <th> Shift Start </th>
+                <th> Shift Stop </th>
+                <th> Week Start Day </th>
+                <th> Week Stop Day </th>
+
+              </tr>
+            </thead>
+            <tbody>              
+                <tr>
+                <td><%= allocation.guard.firstname %> <%= allocation.guard.lastname %></td>
+                <td><%= allocation.shift_start %></td>
+                <td><%= allocation.shift_stop %> </td>
+                <td><%= day_select(allocation.week_start_day) %> </td>
+                <td><%= day_select(allocation.week_stop_day) %> </td>
+            </tbody>
+          </table>
+</div>
+
+<br/>
+
+<div >
+  <table>
+    <thead>
+      <tr>
+        <th> Date </th>
+        <th> Checkpoint Name </th>
+        <th> Location</th>
+        <th> Expected Clock time </th>
+        <th> Lower Limit </th>
+        <th> Upper Limit </th>
+        <th> Guard Clock time </th>
+        <th> Status </th>
+      </tr>
+    </thead>
+    <tbody> 
+<%
+var user_clocks_count=0;      
+clockings.forEach(function(clocking){ 
+  
+  
+  if(allocation.user_id==clocking.user_id)
+         { 
+             user_clocks_count=user_clocks_count+1;       
+%>
+             
+        <tr>
+              <td><%= dateconversion(clocking.createdAt) %></td>
+              <td><%= clocking.patrol_param.checkpoint.checkpoint_name %></td>
+              <td><%= clocking.patrol_param.checkpoint.loc.location_name %> </td>
+              <td><%= clocking.patrol_param.expected_clock_time %></td>
+              <td><%= clocking.patrol_param.lower_bound_time %></td>
+              <td><%= clocking.patrol_param.upper_bound_time %></td>
+              <td><%= clocking.clocking_time %></td>
+              <td><%= clocking.clocking_status %></td>
+      </tr>
+ <%
+        }
+      
+});
+
+if(user_clocks_count==0){
+%>
+<tr>
+  <td colspan="8">No Records Found</td>
+</tr>
+ <% }  %>
+      </tbody>
+  </table>  
+</div>
+
+<%
+});
+
+}
+%>
+
+      <footer class="footer">
+        <br /><br /><br /><br />
+    
+        <p>End of Report</p>
+      
+      </footer>
+      <!-- page-body-wrapper ends -->
+    </div> 
+
+  </body>
+</html>

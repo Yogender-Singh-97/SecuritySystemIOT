@@ -1,0 +1,44 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "filesys.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "check-disk-space": "^3.0.1",
+    "connect-flash": "^0.1.1",
+    "cpu-percentage": "^1.0.3",
+    "date-and-time": "^2.3.0",
+    "date-format": "^3.0.0",
+    "dependencies": "^0.0.1",
+    "ejs": "^3.1.6",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
+    "fast-two-sms": "^3.0.0",
+    "fs": "0.0.1-security",
+    "generate-password": "^1.6.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.7",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.0",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "puppeteer": "^10.4.0",
+    "puppeteer-core": "^10.4.0",
+    "sequelize": "^6.17.0",
+    "sequelize-cli": "^6.4.1",
+    "validate-phone-number-node-js": "0.0.1"
+  }
+}

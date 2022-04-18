@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Clock-in Report</title>
+        <style>
+     
+            table {
+            border-collapse: collapse;
+            }
+            
+            th {
+            background: #ccc;
+            }
+
+            th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            }
+
+            tr:nth-child(even) {
+            background: #efefef;
+            }
+
+            tr:hover {
+            background: #d1d1d1;
+            }
+        </style>
+    </head>
+    <body>
+        <div style = "display:flex; align-items: center; justify-content: center;">
+            <img src="/images/auth/logo_final.jpg" width="400"  height="150"  alt="logo">
+        </div>  
+
+        <div class="row">
+            <h3 style="text-align: center;">Patrol Clock-in Report</h3>
+
+            <div style="align-self: center; border: 0px;">  
+                <table class="my_table" style = "display:flex; align-items: center; justify-content: center;">
+
+                    <tr>
+                        <td>Date From: </td>
+                        <td>Date To: </td>
+                        <td>Total Check-ins: </td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td><%= start_day %></td>
+                        <td><%= end_day %></td>
+                        <td><%= reportData.length %></td>
+
+                    </tr>
+
+                </table> 
+            </div>
+        </div> 
+        <br/>
+        <div>
+            <h4 style = "text-align:center;"> Guard Details </h4>
+        </div>
+        <div style = "display:flex; align-items: center; justify-content: center;">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Full Name </th>
+                        <th> Identification Number </th>
+                        <th> Mobile Number </th>
+                        <th> Email </th>                         
+                    </tr>
+                </thead>
+                <tbody>              
+                    <tr>
+                        <td><%= params.firstname %> <%= params.lastname %></td>
+                        <td><%= params.identification %></td>
+                        <td><%= params.phonenumber %> </td>
+                        <td><%= params.email %> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <% 
+            if(reportData.length == 0)
+            {
+        %>
+
+        <br/><br/>
+        <p style="text-align: center;"><i> No Record Found! </i></p>
+
+        <%
+            }
+            else
+            {        
+        %>
+                
+        <div class="row">
+            <h3 style="text-align: center;"> Patrols Check-in Details </h3>
+        </div>
+
+        <br/>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th> Checkpoint Name </th>
+                        <th> Patrol Route Name </th>
+                        <th> Expected Clock time </th>
+                        <th> Lower Limit </th>
+                        <th> Upper Limit </th>
+                        <th> Guard Clock time </th>
+                        <th> Status </th>
+                    </tr>
+                </thead>
+
+                <tbody> 
+
+                    <%
+                        var i = 0;
+                        reportData.forEach(function(report){       
+                    %>
+             
+                    <tr>
+                        <td><%= checkPointName.get(report.checkpoint_id) %></td>
+                        <td><%= patrolName.get(report.patrol_id) %> </td>
+                        <td><%= patrolParams.get(i).expected_clock_time %></td>
+                        <td><%= patrolParams.get(i).lower_bound_time %></td>
+                        <td><%= patrolParams.get(i).upper_bound_time %></td>
+                        <td><%= report.clocking_time %></td>
+                        <td><%= report.clocking_status %></td>
+                    </tr>
+
+                    <%  
+                            ++i;                     
+                        });
+
+                    %>
+                </tbody>
+            </table>  
+        </div>
+
+        <%
+            }
+        %>
+
+        <footer class="footer">
+
+            <br /><br /><br /><br />
+            <p style = "display:flex; align-items: center; justify-content: center;">End of Report</p>
+      
+        </footer>
+         <!-- page-body-wrapper ends -->
+        </div>
+    </body>
+</html>
