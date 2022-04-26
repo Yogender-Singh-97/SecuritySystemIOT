@@ -1,20 +1,18 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const db = require('../models');
-// Load User model
 
-
-module.exports = function(passport) {
+module.exports = function (passport) {
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (email, password, done) => {
       // Match user
-       db.users.findOne({
-        where:{
-        email: email,status:'current' 
+      db.users.findOne({
+        where: {
+          email: email, status: 'current'
         }
       }).then(user => {
         if (!user) {
-          
+
           return done(null, false, { msg: 'That email is not registered or account disabled' });
         }
 
@@ -31,13 +29,13 @@ module.exports = function(passport) {
     })
   );
 
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser(function (user, done) {
     done(null, user.user_id);
   });
 
-  passport.deserializeUser(function(user_id, done) {
-   const user = db.users.findByPk(user_id);
-  done(null, user);
-
-});
+  passport.deserializeUser(function (user_id, done) {
+    const user = db.users.findByPk(user_id);
+    done(null, user);
+  });
+  
 };
