@@ -7,14 +7,14 @@
   </head>
   <body>
     <div class="container-scroller">
-      <!-- partial:partials/_sidebar.html -->
+      <!-- partial:partials/_sidebar.html --> 
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <%- include('./partials/navigation.ejs') %>
       </nav>
-
+    
       <div class="main-panel">
         <div class="content-wrapper">
-
+          
           <div class="row">
             <div class="col-12 grid-margin stretch-card">
               <div class="card corona-gradient-card">
@@ -25,15 +25,17 @@
                     </div>
                     <div class="col-5 col-sm-7 col-xl-8 p-0">
                       <h3 class="mb-1 mb-sm-0" style="text-align: center;">Guard Registration</h3>
-                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;"><i>Enter Guard Details</i></p>
+                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;">
+                        <i>Enter Guard Details</i>
+                      </p>
                     </div>
-                    <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">                          
+                    <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
           <%- include ('./partials/messages'); %>
           <br/><br/>
 
@@ -43,18 +45,18 @@
               <div class="card">
                 <div class="card-body">
 
-                  <form action="/supervisor/gsave" method="POST" enctype="application/x-www-form-urlencoded">                 
-                     
+                  <form action="/supervisor/gsave" method="POST" enctype="application/x-www-form-urlencoded">
+
                     <div class="form-group">
                       <label for="election_title">First Name</label>
                       <input type="text" class="form-control" name="firstname" id="firstname" placeholder="" required>
                     </div>
-                    
+
                     <div class="form-group">
                       <label for="election_title">Lastname</label>
                       <input type="text" class="form-control" name="lastname" id="lastname" placeholder="" required>
                     </div>
-                    
+
                     <div class="form-group">
                       <label for="election_title">Employee ID</label>
                       <input type="text" class="form-control" name="identification" id="identification" placeholder="" required>
@@ -74,24 +76,26 @@
                       <label for="election_title">Phone Number</label>
                       <input type="text" class="form-control" name="phonenumber" id="phonenumber" placeholder="" required>
                     </div>
-                    <input type="hidden" class="form-control" value="guser" name="username" id="username" placeholder="" required>
 
+                    <input type="hidden" class="form-control" value="guser" name="username" id="username" placeholder="" required>
                     <div class="form-group">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="role" id="role" value="guard" checked>Guard</label>
+                          <input type="radio" class="form-check-input" name="role" id="role" value="guard" checked>
+                          Guard
+                        </label>
                       </div>
                     </div>
                     
                     <button type="submit" class="btn btn-primary mr-2">Confirm</button>
                     <button class="btn btn-dark">Cancel</button>
-
                   </form>
 
                 </div>
               </div>
             </div>
-          <!-- partial (row) ends -->
+
+          <!-- partial(row) ends -->
           </div>
         <!-- content-wrapper ends -->
         </div>
@@ -100,7 +104,7 @@
           <%- include('./partials/footer.ejs') %>
         </footer>
       <!-- main-panel ends -->
-      </div>    
+      </div>
     <!-- container-scroller ends-->
     </div>
     <!-- plugins:js -->
