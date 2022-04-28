@@ -46,7 +46,9 @@
                     </div>
                     <div class="col-5 col-sm-7 col-xl-8 p-0">
                       <h3 class="mb-1 mb-sm-0" style="text-align: center;">Patrol Configuration</h3>
-                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;"><i>Enter Patrol Parameters</i></p>
+                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;">
+                        <i>Enter Patrol Parameters</i>
+                      </p>
                     </div>
                     <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">                      
                     </div>
@@ -55,9 +57,8 @@
               </div>
             </div>
           </div> 
-          <%- include ('./partials/messages'); %>
-          
-          <br /><br />
+          <%- include ('./partials/messages'); %>          
+          <br/><br/>
                       
           <div class="row">
 
@@ -70,15 +71,18 @@
                     <div class="form-group">
                       <label for="election_title">Patrol Name</label>
                       <input type="text" class="form-control" name="patrol_name" id="patrol_name" placeholder="" required>
-                    </div>                    
+                    </div>
+
                     <div class="form-group">
                       <label for="election_title">Patrol Description</label>
                       <input type="text" class="form-control" name="Patrol_description" id="Patrol_description" placeholder="" required>
                     </div>
+
                     <div class="form-group">
                       <label for="election_title">Checkpoint Threshod</label>
                       <input type="text" class="form-control" name="checkpoint_threshod" id="checkpoint_threshod" placeholder="" required>
                     </div>
+
                     <div class="form-group">
                       <label>Checkpoint And Expected Clock Time  </label>
                       <button type="button" id="add_c" class="btn btn-primary btn-fw" style="width: 8%; float:right;">Add</button>
@@ -93,10 +97,11 @@
                               %>
                                 <option value="<%= checkpoint.checkpoint_id %>"><%= checkpoint.checkpoint_name %></option>
                               <% 
-                              }) 
+                              }); 
                               %>
                             </select> 
-                          </td> 
+                          </td>
+
                           <td style="width:25%">                     
                             <input type="time"  name="expected_clock_time[]" style="width:90%"  required >
                           </td>
@@ -107,14 +112,11 @@
                     <button type="submit" class="btn btn-primary mr-2">Confirm</button>
                     <button class="btn btn-dark">Cancel</button>
                   </form>
+
                 </div>
               </div>
             </div>
-
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
-
-          <!-- partial -->
+          <!-- partial(row) ends -->
           </div>
         <!-- Content-Wrapper ends -->
         </div>
@@ -126,6 +128,7 @@
       </div>
     <!-- container-scroller Ends-->
     </div>
+
     <!-- plugins:js -->
     <script src="/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

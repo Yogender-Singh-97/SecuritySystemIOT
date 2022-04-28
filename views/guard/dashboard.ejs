@@ -6,11 +6,11 @@
         <%- include('./partials/head.ejs') %>
     </head>
     <body>
-    <div class="container-scroller">
-        <!-- partial:partials/_sidebar.html -->
+        <div class="container-scroller">
+            <!-- partial:partials/_sidebar.html -->
 
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <%- include('./partials/navigation.ejs') %>
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <%- include('./partials/navigation.ejs') %>
             </nav>
 
             <!-- Main Content -->
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 </div>
-    
+
                 <!-- USER INFORMATION DISPLAY BLOCK -->
                 <div class="row">
                 <div class="col-sm-4 grid-margin">
@@ -172,7 +172,7 @@
                     </div>
                 </div>
                 </div>
-    
+
                 <div class="row">
 
                 <div class="col-sm-4 grid-margin stretch-card">
@@ -242,16 +242,18 @@
                 </div>
 
                 </div>            
-        
-        <footer class="footer">
-            <%- include('./partials/footer.ejs') %>
-        </footer>
-        <!-- page-body-wrapper ends -->
+            <!-- content-wrapper ends -->
+            </div>
+
+            <footer class="footer">
+                <%- include('./partials/footer.ejs') %>
+            </footer>
+            <!-- main-content div ends -->
+            </div> 
+            
+        <!-- container-scroller ends -->
         </div>
-        <!-- main-content div ends -->
-        </div> 
-        
-        <!-- container-scroller -->
+
         <!-- plugins:js -->
         <script src="/vendors/js/vendor.bundle.base.js"></script>
         <!-- endinject -->

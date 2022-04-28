@@ -18,8 +18,7 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="images/login.png" />
   </head>
-  <body>
-    
+  <body>    
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         
@@ -29,18 +28,14 @@
             <div class="card col-lg-4 mx-auto">
               <div class="card-body px-5 py-5">
                 
-                <div class="card text-center border-primary mb-2">
-      
+                <div class="card text-center border-primary mb-2">      
                   <div class="card-body">
                     <h5 class="card-title">Online Patrol System</h5>
                     <p class="card-text text-primary"></p>
-                  </div>
-                  
+                  </div>                  
                 </div>
 
-
                 <h3 class="card-title text-left mb-3">Login</h3>
-
                 <%- include ('./partials/messages') %>
 
                 <form id="login-form" action="/user/login" method="POST"  role="form">
@@ -48,10 +43,12 @@
                     <label>email *</label>
                     <input type="text" class="form-control p_input" name="email" required = "required" data-error="Enter a Valid email.">
                   </div>
+
                   <div class="form-group">
                     <label>Password *</label>
                     <input type="password" class="form-control p_input" name="password" required = "required" data-error="Valid Password is requried.">
                   </div>
+
                   <div class="form-group d-flex align-items-center justify-content-between">
                     <div class="form-check">
                       <label class="form-check-label">
@@ -59,21 +56,22 @@
                     </div>
                     <a href="#" class="forgot-pass">Forgot password</a>
                   </div>
+
                   <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn" >Login</button>
                   </div>
-
                 </form>
+
               </div>
             </div>
           </div>
-          <!-- content-wrapper ends -->
+        <!-- partial(row) ends -->
         </div>
-        <!-- row ends -->
+      <!-- container-fluid ends -->
       </div>
-      <!-- page-body-wrapper ends -->
+    <!-- container-scroller ends -->
     </div>
-    <!-- container-scroller -->
+
     <!-- plugins:js -->
     <script src="vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

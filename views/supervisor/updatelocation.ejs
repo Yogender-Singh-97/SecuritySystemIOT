@@ -10,8 +10,8 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <%- include('./partials/navigation.ejs') %>
-      </nav>       
-        
+      </nav>\
+      
       <div class="main-panel">
         <div class="content-wrapper">
 
@@ -24,61 +24,48 @@
                       <img src="/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
                     </div>
                     <div class="col-5 col-sm-7 col-xl-8 p-0">
-                      <h3 class="mb-1 mb-sm-0" style="text-align: center;">Checkpoint Registration</h3>
+                      <h3 class="mb-1 mb-sm-0" style="text-align: center;">Update Location</h3>
                       <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;">
-                        <i>Enter Checkpoint Details</i>
+                        <i>Enter Location Details</i>
                       </p>
                     </div>
-                    <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">                          
+                    <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
           <%- include ('./partials/messages'); %>
           <br/><br/>
 
           <div class="row">
-
             <div class="col-lg-8 mx-auto">
               <div class="card">
                 <div class="card-body">
-                  
-                  <form action="/supervisor/csave" method="POST" enctype="application/x-www-form-urlencoded">                
-                    
+
+                  <form action="/supervisor/lupdate2" method="POST" enctype="application/x-www-form-urlencoded">
+
+                    <input type="hidden" name="location_id" value="<%= location.location_id %>" >
                     <div class="form-group">
-                      <label for="election_title">Checkpoint Name</label>
-                      <input type="text" class="form-control" name="checkpoint_name" id="checkpoint_name" placeholder="" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="election_title">Checkpoint Sensor ID</label>
-                      <input type="text" class="form-control" name="checkpoint_embeded_id" id="checkpoint_embeded_id" placeholder="" required>
-                    </div>
-                    
-                    <div class="form-group">
-                      <label for="election_title">Checkpoint  GPS</label>
-                      <input type="text" class="form-control" name="checkpoint_gps" id="checkpoint_gps" placeholder="" required>
+                      <label for="election_title">Location Name</label>
+                      <input type="text" class="form-control" name="location_name" value="<%= location.location_name %>" id="location_name" placeholder="" required>
                     </div>
 
                     <div class="form-group">
-                      <label>Location </label>
-                      <select name="location_id" class="js-example-basic-single" style="width:100%">
-                        <%  
-                        locations.forEach(function(location){ 
-                        %>
-                          <option value="<%= location.location_id %>"><%= location.location_name %></option>
-                        <% 
-                        }); 
-                        %>
-                      </select>
+                      <label for="election_title">Location Description</label>
+                      <input type="text" class="form-control" name="description" value="<%= location.description %>" id="location_description" placeholder="" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="election_title">Location GPS</label>
+                      <input type="text" class="form-control" name="location_gps" id="location_gps" value="<%= location.location_gps %>" placeholder="" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary mr-2">Confirm</button>
-                    <button class="btn btn-dark">Cancel</button>                    
+                    <button class="btn btn-dark">Cancel</button>
                   </form>
-
+                  
                 </div>
               </div>
             </div>
@@ -91,10 +78,10 @@
           <%- include('./partials/footer.ejs') %>
         </footer>
       <!-- main-panel ends -->
-      </div>    
-    <!-- container-scroller -->
+      </div>
+    <!-- container-scroller ends-->
     </div>
-    
+
     <!-- plugins:js -->
     <script src="/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

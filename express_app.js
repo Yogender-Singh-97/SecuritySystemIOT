@@ -28,12 +28,9 @@ app.use(express.json());
 //url for mysql database connection
 db.sequelize.sync({ alter: true }).then(function(){
   //listen for request
-
   app.listen(3000);
   console.log('connected!!! up and running!');
-
 }).catch(function (err) {
-
     console.log(err);
 });
 
@@ -98,6 +95,7 @@ app.post('/', async function (req, res) {
   //if RFID entry is 'invalid' or PICC with guardRFID is not assigned to any guard
   if(guardID == undefined) {
     res.sendStatus(404).end();
+    return;
   }
 
   const patrolID = await db.guard_allocations.findOne({
