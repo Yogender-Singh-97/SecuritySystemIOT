@@ -4,15 +4,15 @@ const db = require('../models');
 
 module.exports = function (passport) {
   passport.use(
-    new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (email, password, done) => {
+    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
       // Match user
       db.users.findOne({
         where: {
-          email: email, status: 'current'
+          email: email,
+          status: 'current'
         }
       }).then(user => {
         if (!user) {
-
           return done(null, false, { msg: 'That email is not registered or account disabled' });
         }
 
@@ -37,5 +37,5 @@ module.exports = function (passport) {
     const user = db.users.findByPk(user_id);
     done(null, user);
   });
-  
+
 };

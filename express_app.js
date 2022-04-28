@@ -28,12 +28,9 @@ app.use(express.json());
 //url for mysql database connection
 db.sequelize.sync({ alter: true }).then(function(){
   //listen for request
-
   app.listen(3000);
   console.log('connected!!! up and running!');
-
 }).catch(function (err) {
-
     console.log(err);
 });
 

@@ -6,137 +6,159 @@
         <%- include('./partials/head.ejs') %>
     </head>
     <body>
-    <div class="container-scroller">
-        <!-- partial:partials/_sidebar.html -->
-
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <%- include('./partials/navigation.ejs') %>
-        </nav>
-
+        <div class="container-scroller">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <%- include('./partials/navigation.ejs') %>
+            </nav>
             <!-- Main Content -->
-
             <div class="main-panel">
-            <div class="content-wrapper">
+                <div class="content-wrapper">
 
-                <div class="row">
-                <div class="col-12 grid-margin stretch-card">
-                    <div class="card corona-gradient-card">
-                    <div class="card-body py-0 px-0 px-sm-3">
-                        <div class="row align-items-center">
-                        <div class="col-4 col-sm-3 col-xl-2">
-                            <img src="/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
-                        </div>
-                        <div class="col-5 col-sm-7 col-xl-8 p-0">
-                            <h1 class="mb-1 mb-sm-0 text-center"> Report </h1>
-                            <h4 class="mb-1 mb-sm-0 text-center"> Records From Date <%= start_day %> to <%= end_day %> (YYYY-MM-DD)</h4>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            
-                <%
-                    if(reportData.length < 1)
-                    {
-                %> 
-
-                <div class="alert alert-warning" role="alert" style="text-align: center;">
-                    No record is Found!
-                </div>  
-  
-                <%
-                    }
-                    else
-                    {
-                %>
-                <div style ="display:flex; align-items: center; justify-content: right;">
-                    <form action= "/guard/printReport/?start_day= <%= end_day %>&stop_day=<%= start_day %>" method = "POST" enctype="application/x-www-form-urlencoded">
-                        <button type = "submit" class = "btn btn-primary mr-2"> Print Report </button>
-                    </form>
-                </div>
-
-                <div class="row">               
-    
-                    <div class="col-lg-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">                  
-        
-                                <div class="table-responsive">
-                                    <table class="table table-dark table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th style="width:5%"> Patrol Name </th>
-                                                <th style="width:5%"> Checkpoint Name </th>
-                                                <th style="width:5%"> Patrol's Checkpoint Number </th>
-                                                <th style="width:5%"> Status </th>
-                                                <th style="width:5%"> Clock-in Time </th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>                
-                                        
-                                        <%                           
-                                            reportData.forEach(function(data){  
-                                        %>
-
-                                        <tr>
-                                            <td> <%= patrolName.get(data.patrol_id) %> </td>
-                                            <td> <%= checkPointName.get(data.checkpoint_id) %> </td>
-                                            <td> <%= data.patrol_params_id %> </td>
-                                            <td> <%= data.clocking_status %> </td> 
-                                            <td> <%= data.clocking_time %> </td>
-                                        </tr>
-                                        <% 
-                                            }); 
-                                        %>
-
-                                        </tbody>
-                                    </table>
-                                </div>
+                    <div class="row">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card corona-gradient-card">
+                        <div class="card-body py-0 px-0 px-sm-3">
+                            <div class="row align-items-center">
+                            <div class="col-4 col-sm-3 col-xl-2">
+                                <img src="/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
+                            </div>
+                            <div class="col-5 col-sm-7 col-xl-8 p-0">
+                                <h1 class="mb-1 mb-sm-0 text-center"> Report </h1>
+                                <h4 class="mb-1 mb-sm-0 text-center"> Records From Date <%= start_day %> to <%= end_day %> (YYYY-MM-DD)</h4>
+                            </div>
                             </div>
                         </div>
+                        </div>
                     </div>
+                    </div>
+                
+                    <%
+                        if(reportData.length < 1)
+                        {
+                    %> 
 
-                </div>
-               
-                <div style = "display: flex; align-items: center; justify-content: center;">
-                    <nav aria-label="..." style="align-content: center;">
-                        <ul class="pagination">
-                        <% if(page == 0){ %>
-                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                        <%} else {  %>
-                        <li class="page-item"><a class="page-link" href="/guard/viewReport?stDay=<%= start_day %>&endDay=<%= end_day %>&pagNo=<%= page-1 %>">Previous</a></li>
-                        <% } %>
-        
-                        <% for(let i = 0; i < totalPages; i++) { if(i==page){ %>
-                        <li class="page-item active" aria-current="page">
-                            <span class="page-link"><%= i+1 %></span>
-                        </li>
-                        <% } else { %>
-                        <li class="page-item"><a class="page-link" href="/guard/viewReport?stDay=<%= start_day %>&endDay=<%= end_day %>&pagNo=<%= i %>"><%= i+1 %></a></li>
-                        <% }} if(page==(totalPages-1)) { %>
-                        <li class="page-item disabled"><span class="page-link">Next</span></li>
-                        <% } else { %>  
-                        <li class="page-item"><a class="page-link" href="/guard/viewReport?stDay=<%= start_day %>&endDay=<%= end_day %>&pagNo=<%= page+1 %>">Next</a></li>  
-                        <% } %>
-        
-                        </ul>
-                    </nav>
-                </div>
+                            <div class="alert alert-warning" role="alert" style="text-align: center;">
+                                No record is Found!
+                            </div>  
+    
+                    <%
+                        }
+                        else
+                        {
+                    %>
+                            <div style ="display:flex; align-items: center; justify-content: right;">
+                                <form action= "/guard/printReport/?start_day= <%= end_day %>&stop_day=<%= start_day %>" method = "POST" enctype="application/x-www-form-urlencoded">
+                                    <button type = "submit" class = "btn btn-primary mr-2"> Print Report </button>
+                                </form>
+                            </div>
 
-                <%
-                    }
-                %>
-        
-        <footer class="footer">
-            <%- include('./partials/footer.ejs') %>
-        </footer>
-        <!-- page-body-wrapper ends -->
+                            <div class="row">               
+                
+                                <div class="col-lg-12 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">                  
+                    
+                                            <div class="table-responsive">
+                                                <table class="table table-dark table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width:5%"> Patrol Name </th>
+                                                            <th style="width:5%"> Checkpoint Name </th>
+                                                            <th style="width:5%"> Patrol's Checkpoint Number </th>
+                                                            <th style="width:5%"> Status </th>
+                                                            <th style="width:5%"> Clock-in Time </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>                                                    
+                                                    <%                           
+                                                        reportData.forEach(function(data){  
+                                                    %>
+                                                            <tr>
+                                                                <td> <%= patrolName.get(data.patrol_id) %> </td>
+                                                                <td> <%= checkPointName.get(data.checkpoint_id) %> </td>
+                                                                <td> <%= data.patrol_params_id %> </td>
+                                                                <td> <%= data.clocking_status %> </td> 
+                                                                <td> <%= data.clocking_time %> </td>
+                                                            </tr>
+                                                    <% 
+                                                        }); 
+                                                    %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                
+                            <div style = "display: flex; align-items: center; justify-content: center;">
+                                <nav aria-label="..." style="align-content: center;">
+                                    <ul class="pagination">
+                                    <% 
+                                        if(page == 0){ 
+                                    %>
+                                            <li class="page-item disabled">
+                                                <span class="page-link">Previous</span>
+                                            </li>
+                                    <%
+                                        } else {  
+                                    %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="/guard/viewReport?stDay=<%= start_day %>&endDay=<%= end_day %>&pagNo=<%= page-1 %>">Previous</a>
+                                            </li>
+                                    <% 
+                                        } 
+                                                      
+                                        for(let i = 0; i < totalPages; i++) { 
+                                            if(i==page){ 
+                                    %>
+                                                <li class="page-item active" aria-current="page">
+                                                    <span class="page-link"><%= i+1 %></span>
+                                                </li>
+                                        <% 
+                                            } else { 
+                                        %>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="/guard/viewReport?stDay=<%= start_day %>&endDay=<%= end_day %>&pagNo=<%= i %>"><%= i+1 %></a>
+                                                </li>
+                                    <%       }
+                                        } 
+                                        
+                                        if(page==(totalPages-1)) { 
+                                    %>
+                                            <li class="page-item disabled">
+                                                <span class="page-link">Next</span>
+                                            </li>
+                                    <% 
+                                        } else { 
+                                    %>  
+                                            <li class="page-item">
+                                                <a class="page-link" href="/guard/viewReport?stDay=<%= start_day %>&endDay=<%= end_day %>&pagNo=<%= page+1 %>">Next</a>
+                                            </li>  
+                                    <% 
+                                        } 
+                                    %>                    
+                                    </ul>
+                                </nav>
+                            </div>
+
+                    <%
+                        }
+                    %>
+                <!-- content-wrapper ends -->
+                </div>
+            
+                <footer class="footer">
+                    <%- include('./partials/footer.ejs') %>
+                </footer>
+            <!-- main-panel ends --> 
+            </div>
+        <!-- container-scroller ends-->
         </div>
-        <!-- main-panel ends --> 
-        </div>
-        <!-- container-scroller -->
+
         <!-- plugins:js -->
         <script src="/vendors/js/vendor.bundle.base.js"></script>
         <!-- endinject -->

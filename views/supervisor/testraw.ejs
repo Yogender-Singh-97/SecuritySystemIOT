@@ -2,76 +2,65 @@
 <html lang="en">
   <head>
     <title>Election Results</title>
-      <style>
-     
-table {
-  border-collapse: collapse;
-}
- th {
-  background: #ccc;
-}
+    <style>     
+      table {
+        border-collapse: collapse;
+      }
 
-th, td {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
+      th {
+        background: #ccc;
+      }
 
-tr:nth-child(even) {
-  background: #efefef;
-}
+      th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
 
-tr:hover {
-  background: #d1d1d1;
-}
+      tr:nth-child(even) {
+        background: #efefef;
+      }
+
+      tr:hover {
+        background: #d1d1d1;
+      }
     </style>
   </head>
   <body>
+    <%
+    function dateconversion(date_value){
+      var formattedDate = date_value.toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'}).replace(/ /g, '-');
+      return formattedDate;
+    }
+    %>
+  <div>
+    <img src="/images/logo1.png"  alt="logo">
+  </div>
 
-
-<%
-
-function dateconversion(date_value)
-{
-
- var formattedDate = date_value.toLocaleDateString('en-GB', {
- day: 'numeric', month: 'short', year: 'numeric'
-  }).replace(/ /g, '-');
-
-  return formattedDate;
-}
-
-%>
-
-
-<div>
-  <img src="/images/logo1.png"  alt="logo">
-</div>  
   <div class="row">
-
-  <h3 style="text-align: center;">Delhi University Election Report</h3>
+    <h3 style="text-align: center;">Delhi University Election Report</h3>
   </div>
 
   <div style="align-self: center;">  
-  <table class="my_table">
-    <tr>
-      <th>Election Title</th>
-      <th>Election Start Date</th>
-      <th>Election Stop Date</th>
-      <th>Number Of Positions</th>
-      <th>Number Of Candidates</th>
-      <th>Eligible Voters</th>
-      <th>Voters Registered</th>
-    </tr>
-    <tr>
-      <td><%= elections.title %></td>
-      <td> <%= dateconversion(elections.start_date) +" "+elections.start_time %> </td>
-      <td> <%= dateconversion(elections.stop_date) +" "+elections.stop_time %> </td>
-      <td><%= election_stats.positions %></td>
-      <td><%= election_stats.candidates %></td>
-      <td><%= election_stats.voters_eligible %></td>
-      <td><%=  election_stats.voters_registered %></td>
-    </tr>
-  </table> 
+    <table class="my_table">
+      <tr>
+        <th>Election Title</th>
+        <th>Election Start Date</th>
+        <th>Election Stop Date</th>
+        <th>Number Of Positions</th>
+        <th>Number Of Candidates</th>
+        <th>Eligible Voters</th>
+        <th>Voters Registered</th>
+      </tr>
+      <tr>
+        <td><%= elections.title %></td>
+        <td> <%= dateconversion(elections.start_date) +" "+elections.start_time %> </td>
+        <td> <%= dateconversion(elections.stop_date) +" "+elections.stop_time %> </td>
+        <td><%= election_stats.positions %></td>
+        <td><%= election_stats.candidates %></td>
+        <td><%= election_stats.voters_eligible %></td>
+        <td><%=  election_stats.voters_registered %></td>
+      </tr>
+    </table> 
 </div>              
               
             <!--  -->

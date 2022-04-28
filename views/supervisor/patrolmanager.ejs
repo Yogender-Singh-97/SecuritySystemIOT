@@ -25,7 +25,9 @@
                     </div>
                     <div class="col-5 col-sm-7 col-xl-8 p-0">
                       <h3 class="mb-1 mb-sm-0" style="text-align: center;">Manage Patrols</h3>
-                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;"><i>Select a Patrol to manage</i></p>
+                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;">
+                        <i>Select a Patrol to manage</i>
+                      </p>
                     </div>
                     <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">                        
                     </div>
@@ -38,8 +40,7 @@
   
           <% 
           if(errors){ 
-            errors.forEach(function(error) 
-            { 
+            errors.forEach(function(error) { 
           %>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <h5 style="text-align: center;">  <%= error %> </h5>
@@ -51,8 +52,7 @@
             }); 
           }
 
-          if(alertsm.length>0)
-          {
+          if(alertsm.length>0) {
           %>
             <div  class="alert alert-success alert-dismissible fade show" role="alert">
               <h5 style="text-align: center;"><%= alertsm %></h5>
@@ -63,16 +63,13 @@
           <%           
           }
 
-          if(patrols.length < 1)
-          {
+          if(patrols.length < 1) {
           %>
             <div class="alert alert-warning" role="alert" style="text-align: center;">
               No any patrols were found!
             </div>
           <%
-          }
-          else
-          {
+          } else {
           %>        
             <div class="row">
 
@@ -124,11 +121,15 @@
                   <% 
                   if(page==0){ 
                   %>
-                    <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                    <li class="page-item disabled">
+                      <span class="page-link">Previous</span>
+                    </li>
                   <%
                   } else {
                   %>
-                    <li class="page-item"><a class="page-link" href="/supervisor/pmanage/<%= page-1 %>">Previous</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="/supervisor/pmanage/<%= page-1 %>">Previous</a>
+                    </li>
                   <% 
                   } 
                   
@@ -141,38 +142,45 @@
                     <% 
                     } else { 
                     %>
-                      <li class="page-item"><a class="page-link" href="/supervisor/pmanage/<%= i %>"><%= i+1 %></a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="/supervisor/pmanage/<%= i %>"><%= i+1 %></a>
+                      </li>
                     <% 
                     }
-                  } 
+                  }
+
                   if(page==(totalPages-1)) { 
                   %>
-                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                    <li class="page-item disabled">
+                      <span class="page-link">Next</span>
+                    </li>
                   <% 
                   } else { 
                   %>  
-                    <li class="page-item"><a class="page-link" href="/supervisor/pmanage/<%= page+1 %>">Next</a></li>  
+                    <li class="page-item">
+                      <a class="page-link" href="/supervisor/pmanage/<%= page+1 %>">Next</a>
+                    </li>  
                   <% 
                   } 
                   %>
 
                 </ul>
               </nav>
-
             </div>
           <% 
           }
           %>
         <!-- Content-Wrapper Ends-->
         </div>
+          
+        <footer class="footer">
+          <%- include('./partials/footer.ejs') %>
+        </footer>
       <!-- main-panel ends -->
       </div>
-    
-      <footer class="footer">
-        <%- include('./partials/footer.ejs') %>
-      </footer>
     <!-- Container-Scroller ends -->
-    </div> 
+    </div>
+     
     <!-- plugins:js -->
     <script src="/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

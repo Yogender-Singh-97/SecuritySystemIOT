@@ -57,7 +57,9 @@
                     </div>
                     <div class="col-5 col-sm-7 col-xl-8 p-0">
                       <h3 class="mb-1 mb-sm-0" style="text-align: center;">Modify Patrol Configuration</h3>
-                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;"><i>Enter Patrol Parameters</i></p>
+                      <p class="mb-0 font-weight-normal d-none d-sm-block" style="text-align: center;">
+                        <i>Enter Patrol Parameters</i>
+                      </p>
                     </div>
                     <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">                      
                     </div>
@@ -77,8 +79,7 @@
                    
                     <form action="/supervisor/pupdate2" method="POST" enctype="application/x-www-form-urlencoded">
                          
-                      <input type="hidden" name="patrol_id"  value="<%= patrol.patrol_id %>">
-                      
+                      <input type="hidden" name="patrol_id"  value="<%= patrol.patrol_id %>">                      
                       <div class="form-group">
                         <label for="election_title">Patrol Name</label>
                         <input type="text" class="form-control" value="<%= patrol.patrol_name %>" name="patrol_name" id="patrol_name" placeholder="" required>
@@ -88,10 +89,12 @@
                         <label for="election_title">Patrol Description</label>
                         <input type="text" class="form-control" value="<%= patrol.Patrol_description %>" name="Patrol_description" id="Patrol_description" placeholder="" required>
                       </div>
+
                       <div class="form-group">
                         <label for="election_title">Checkpoint Threshod</label>
                         <input type="text" class="form-control" value="<%= patrol.checkpoint_threshod %>" name="checkpoint_threshod" id="checkpoint_threshod" placeholder="" required>
-                      </div>                      
+                      </div>
+
                       <div class="form-group">
                         <label>Checkpoint And Expected Clock Time  </label>
                         <button type="button" id="add_c" class="btn btn-primary btn-fw" style="width: 8%; float:right;">Add</button>
@@ -106,34 +109,32 @@
                                 <select name="checkpoint_id[]" class="js-example-basic-single" style="width:98%">
                                   <%  
                                   checkpoints.forEach(function(checkpoint){ 
-                                    if(checkpoint.checkpoint_id==par.checkpoint_id)
-                                    { 
+                                    if(checkpoint.checkpoint_id==par.checkpoint_id) { 
                                   %>
                                       <option selected="selected" value="<%= checkpoint.checkpoint_id %>"><%= checkpoint.checkpoint_name %></option>
                                   <%
-                                    }
-                                    else
-                                    {
+                                    } else {
                                   %>
                                       <option  value="<%= checkpoint.checkpoint_id %>"><%= checkpoint.checkpoint_name %></option>
                                   <%
                                     }                              
-                                  }) 
+                                  }); 
                                   %>
                                 </select>
                               </td>
+
                               <td style="width:25%"> 
                                 <input type="time"  name="expected_clock_time[]" value="<%= par.expected_clock_time %>" style="width:90%" required >
                               </td>
+
                               <td>
                                 <button type="button" id="del_g" class="btn btn-danger btn-fw" style="width: 10%; float:right;">Delete</button>
                               </td>                         
                             </tr>                         
                           <%  
-                          }) 
+                          }); 
                           %>
                         </table>
-
                       </div>                 
 
                       <button type="submit" class="btn btn-primary mr-2">Confirm</button>
@@ -143,10 +144,8 @@
                   </div>
                 </div>
               </div>
-
-          <!-- partial -->
+          <!-- partial(row) ends -->
           </div>
-
         <!-- Content-Wrapper ends -->
         </div>
 
@@ -154,8 +153,7 @@
           <%- include('./partials/footer.ejs') %>
         </footer>
       <!-- main-panel ends -->
-      </div>
-    
+      </div>    
     <!-- container-scroller ends-->
     </div>
     
