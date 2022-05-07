@@ -910,6 +910,14 @@ const gmodify_get = async function (req, res) {
       user_id: req.params.gid
     }
   });
+
+  //in case allocation is not yet done for this particular guard
+  if(patrols_selected == undefined) {
+    var errorMsg = "No Allocation is done for the Guard Yet!";
+    req.flash('alerts1',errorMsg);
+    return res.redirect("/supervisor/gmanage/0");
+  }
+
   const patrols_selected1 = await db.guard_allocations.findAll({
     where: {
       user_id: req.params.gid

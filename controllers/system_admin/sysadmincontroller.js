@@ -205,7 +205,7 @@ const manage = async function (req, res) {
   res.render('../views/system_admin/usermanager', { users, page, totalPages, alertsm, errors: req.flash('alerte1') });
 }
 
-//delete election
+//delete user
 const delete_user = async function (req, res) {
   var uid = req.params.uid;
   var errors = [];
