@@ -49,7 +49,7 @@
                 
                     <input type="hidden" name="user_id" value="<%= users.user_id %>" >
                     <div class="form-group">
-                      <label for="election_title">First Name</label>
+                      <label for="firstname">First Name</label>
                       <input type="text" class="form-control" name="firstname" value="<%= users.firstname %>" id="firstname" placeholder="" required>
                     </div>
                     
@@ -78,25 +78,39 @@
                       var guardc="";
                       var adminc="";
         
-                      if(users.role=='guard'){
-                        guardc="checked";
-                      } else {
-                        edminc="checked";
-                      }
-                      %>                      
+                      if(users.role=='guard' || users.role == 'supervisor'){
+                        if(users.role == 'guard'){
+                          guardc ="checked";
+                        } else {
+                          adminc ="checked";
+                        }
+                      %>
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="role" id="role" value="supervisor" <%= edminc %>>Supervisor </label>
+                          <input type="radio" class="form-check-input" name="role" id="role" value="guard" <%=guardc%>>Guard </label>
                       </div>
 
                       <div class="form-check">
                         <label class="form-check-label">
-                          <input type="radio" class="form-check-input" name="role" id="role" value="admin" <%= adminc %>>System Administrator  </label>
-                      </div>                
+                          <input type="radio" class="form-check-input" name="role" id="role" value="supervisor" <%=adminc%>>Supervisor </label>
+                      </div>
+                      <%
+                      } else {
+                        adminc="checked";
+                      %>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="role" id="role" value="admin" <%=adminc%>>Administrator </label>
+                      </div>
+                      <%
+                      }
+                      %>                                   
                     </div>
 
                     <button type="submit" class="btn btn-primary mr-2">Confirm</button>
-                    <button class="btn btn-dark">Cancel</button>
+                    <button class="btn btn-dark">
+                      <a href = "/user/umanage/0">Cancel</a>
+                    </button>
                   </form>
                 </div>
               </div>

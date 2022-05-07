@@ -60,7 +60,7 @@
   </head>
   <body>
   <div class="container-scroller">
-    <!-- partial:partials/_sidebar.html -->
+    <!-- partial:partials/_sidebar.html -->    
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <%- include('./partials/navigation.ejs') %>
     </nav>
@@ -101,7 +101,7 @@
                 <form action="/supervisor/pgenerate" method="POST" enctype="application/x-www-form-urlencoded">
               
                   <div class="form-group">
-                    <label>Location </label>
+                    <label> Patrol </label>
                     <select name="patrol_id" id="pid" class="js-example-basic-single" style="width:100%">
                       <%  
                       patrols.forEach(function(patrol){ 

@@ -113,6 +113,12 @@ app.post('/', async function (req, res) {
     ]
   });
 
+  //if guard with Card exists in system but allocation is not done for him/her yet
+  if(patrolID == undefined) {
+    res.sendStatus(404).end();
+    return;
+  }
+
   const checkPointID = await db.checkpoints.findOne({
     where: {
       checkpoint_embeded_id: receiverID
