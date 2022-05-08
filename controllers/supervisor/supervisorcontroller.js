@@ -802,7 +802,8 @@ const update_patrol2 = async function (req, res) {
     if (errors.length == 0) {
       await db.patrols.update({
         Patrol_description: params.Patrol_description,
-        patrol_name: params.patrol_name
+        patrol_name: params.patrol_name,
+        checkpoint_threshod:params.checkpoint_threshod
       }, {
         where: {
           patrol_id: params.patrol_id
@@ -845,7 +846,7 @@ const update_patrol2 = async function (req, res) {
         });
       }
 
-      req.flash('alerts1', 'Patrol Deleted Successfully');
+      req.flash('alerts1', 'Patrol Updated Successfully');
       const checkpoints = await db.checkpoints.findAll();
       res.redirect('/supervisor/pmanage/0');
     } else {
@@ -1184,6 +1185,11 @@ const report_patrol = async function (req, res) {
   var stop_d = new Date(req.params.stop_date);
   var allocation_headers;
   var clockings;
+  var D_start;
+  var D_stop;
+  var syr;
+  var smnt;
+  var dt;
   try {
     //fetching Patrol headers
     const patrol_headers = await db.patrols.findAll({
@@ -1196,8 +1202,35 @@ const report_patrol = async function (req, res) {
       }
     });
     //Fetching Allocation Headers Clocks
-    start_d = new Date(start_d.getFullYear(), start_d.getMonth(), start_d.getDate() - 1);
+    start_d = new Date(start_d.getFullYear(), start_d.getMonth(), start_d.getDate());
     stop_d = new Date(stop_d.getFullYear(), stop_d.getMonth(), stop_d.getDate() + 1);
+
+    //Manual formating date to I=SO String
+    syr = start_d.getFullYear();
+    smnt = start_d.getMonth()+1;
+    dt = start_d.getDate();
+
+     if (dt < 10) {
+       dt = '0' + dt;
+     }
+     if (smnt < 10) {
+       smnt = '0' + smnt;
+     }
+     D_start =  syr+'-'+smnt+'-'+dt+'T00:00:00.000Z';
+  
+   //
+   syr = stop_d.getFullYear();
+   smnt = stop_d.getMonth()+1;
+   dt = stop_d.getDate();
+
+    if (dt < 10) {
+      dt = '0' + dt;
+    }
+    if (smnt < 10) {
+      smnt = '0' + smnt;
+    }
+    D_stop =  syr+'-'+smnt+'-'+dt+'T00:00:00.000Z';
+
 
     //Fetching Allocation Headers Clocks
     if (gid1 == 0) {
@@ -1211,7 +1244,7 @@ const report_patrol = async function (req, res) {
       });
       clockings = await db.guard_clocks.findAll({
         where: {
-          patrol_id: pid, createdAt: { [Op.between]: [start_d, stop_d] }
+          patrol_id: pid, createdAt: { [Op.between]: [D_start, D_stop] }
         },
         include: {
           model: db.patrol_params, as: 'patrol_param',
@@ -1259,7 +1292,7 @@ const report_patrol = async function (req, res) {
         where: {
           patrol_id: pid,
           createdAt: {
-            [Op.between]: [start_d, stop_d]
+            [Op.between]: [D_start, D_stop]
           }
         }, include: {
           model: db.patrol_params, as: 'patrol_param',
@@ -1272,7 +1305,8 @@ const report_patrol = async function (req, res) {
         }
       });
     }
-
+    start_d=dateconversion(new Date(req.params.start_date));
+    stop_d=dateconversion(new Date(req.params.stop_date)); 
     res.render('../views/supervisor/patrol_report_raw', { start_d, stop_d, clockings, allocation_headers, patrol_headers, success, errors });
   } catch (err) {
     console.log(err);
@@ -1474,6 +1508,15 @@ const delete_location = async function (req, res) {
     console.log(err);
   }
 }
+
+function dateconversion(date_value)
+{
+ var formattedDate = date_value.toLocaleDateString('en-GB', {
+ day: 'numeric', month: 'short', year: 'numeric'
+  }).replace(/ /g, '-');
+  return formattedDate;
+}
+
 
 module.exports = {
   guard_password_reset, enable_guard, disable_guard, delete_guard, guard_register_get, isAuthenticated, guard_save, guard_manage, update_guard1, 
